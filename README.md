@@ -13,7 +13,6 @@ If the official repository gets updated, this fork will be deleted or updated ac
    * [Usage](#usage)
       * [Checkouts](#checkouts)
       * [Charges](#charges)
-      * [Invoices](#invoices)
       * [Events](#events)
       * [Webhooks](#webhooks)
       * [Warnings](#warnings)
@@ -292,83 +291,6 @@ $chargeObj = Charge::retrieve(<charge_id>);
 
 if ($chargeObj) {
     $chargeObj->cancel();
-}
-```
-
-## Invoices
-[Invoices API docs](https://commerce.coinbase.com/docs/api/#invoices)
-More examples on how to use charges can be found in the [`examples/Resources/InvoiceExample.php`](examples/Resources/InvoiceExample.php) file
-
-### Load invoice resource class
-``` php
-use CoinbaseCommerce\Resources\Invoice;
-```
-### Retrieve
-``` php
-$invoiceObj = Invoice::retrieve(<invoice_id>);
-```
-### Create
-``` php
-$invoiceData = [
-    'business_name' => 'Crypto Account LLC',
-    'customer_email' => 'customer@test.com',
-    'customer_name' => 'Test Customer',
-    'local_price' => [
-        'amount' => '100.00',
-        'currency' => 'USD'
-    ],
-    'memo' => 'Taxes and Accounting Services'
-];
-Invoice::create($invoiceData);
-
-// or
-$invoiceObj = new Invoice();
-
-$invoiceObj->business_name = 'Crypto Account LLC';
-$invoiceObj->customer_email = 'customer@test.com';
-$invoiceObj->customer_name = 'Test Customer';
-$invoiceObj->local_price = [
-    'amount' => '100.00',
-    'currency' => 'USD'
-];
-$invoiceObj->memo = 'Taxes and Accounting Services';
-$invoiceObj->save();
-```
-### List
-``` php
-$list = Invoice::getList();
-
-foreach($list as $invoice) {
-    var_dump($list);
-}
-
-$pagination = $list->getPagination();
-```
-### Get all invoices
-``` php
-$allInvoices = Invoice::getAll();
-```
-
-### Resolve an invoice
-Resolve an invoice that has been previously marked as unresolved.  
-Note: Only invoices with an unresolved charge can be successfully resolved.
-```
-$invoiceObj = Invoice::retrieve(<charge_id>);
-
-if ($invoiceObj) {
-    $invoiceObj->resolve();
-}
-```
-
-### Void an invoice
-Voids an invoice that has been previously created.  
-Note: Only invoices with `OPEN` or `VIEWED` status can be voided. Once a payment is detected, the invoice can no longer be voided.
-
-```
-$invoiceObj = Invoice::retrieve(<invoice_id>);
-
-if ($invoiceObj) {
-    $invoiceObj->void();
 }
 ```
 

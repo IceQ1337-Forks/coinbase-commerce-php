@@ -5,7 +5,6 @@ namespace CoinbaseCommerce;
 use CoinbaseCommerce\Resources\Charge;
 use CoinbaseCommerce\Resources\Checkout;
 use CoinbaseCommerce\Resources\Event;
-use CoinbaseCommerce\Resources\Invoice;
 
 class Util
 {
@@ -43,7 +42,6 @@ class Util
                 'checkout' => Checkout::getClassName(),
                 'charge' => Charge::getClassName(),
                 'event' => Event::getClassName(),
-                'invoice' => Invoice::getClassName(),
             ];
         }
 
