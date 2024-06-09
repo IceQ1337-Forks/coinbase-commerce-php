@@ -5,6 +5,12 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
-        "coinbase/coinbase-commerce": "^1.0.0"
-    }
+        "coinbase/coinbase-commerce": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:IceQ1337/coinbase-commerce-php"
+        }
+    ]
 }
