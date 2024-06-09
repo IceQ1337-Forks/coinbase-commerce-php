@@ -177,11 +177,13 @@ class ApiResourceList extends \ArrayObject
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function asort(int $flags = \SORT_REGULAR): bool
     {
         return \asort($this->items, $flags);
     }
 
+    #[\ReturnTypeWillChange]
     public function ksort(int $flags = \SORT_REGULAR): bool
     {
         return \ksort($this->items, $flags);
