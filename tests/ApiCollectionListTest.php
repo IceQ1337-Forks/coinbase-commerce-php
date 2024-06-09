@@ -5,7 +5,7 @@ namespace CoinbaseCommerce\Tests;
 use CoinbaseCommerce\ApiResourceList;
 use CoinbaseCommerce\Resources\Charge;
 
-class ApiCollectionListTest extends BaseTest
+class ApiCollectionListTest extends TestBase
 {
     public function testInitCollection()
     {

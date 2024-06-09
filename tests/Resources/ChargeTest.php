@@ -4,9 +4,9 @@ namespace CoinbaseCommerce\Tests\Resources;
 
 use CoinbaseCommerce\ApiResourceList;
 use CoinbaseCommerce\Resources\Charge;
-use CoinbaseCommerce\Tests\BaseTest;
+use CoinbaseCommerce\Tests\TestBase;
 
-class ChargeTest extends BaseTest
+class ChargeTest extends TestBase
 {
     public function setUp(): void
     {

@@ -13,7 +13,7 @@ use CoinbaseCommerce\Exceptions\ServiceUnavailableException;
 use CoinbaseCommerce\Exceptions\ValidationException;
 use CoinbaseCommerce\Resources\Charge;
 
-class ExceptionsTest extends BaseTest
+class ExceptionsTest extends TestBase
 {
     protected $fixtures = [];
 

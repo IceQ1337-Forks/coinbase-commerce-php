@@ -6,7 +6,7 @@ use CoinbaseCommerce\ApiClient;
 use CoinbaseCommerce\Tests\GuzzleClientMock\GuzzleMockClientFactoryMethod;
 use PHPUnit\Framework\TestCase;
 
-abstract class BaseTest extends TestCase
+abstract class TestBase extends TestCase
 {
     /**
      * @var ApiClient
