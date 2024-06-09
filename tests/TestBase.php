@@ -36,9 +36,8 @@ abstract class TestBase extends TestCase
             ->method('getHttpClient')
             ->willReturn($client);
 
-        // https://github.com/sebastianbergmann/phpunit/issues/4852
-        $this->logger = $this->getMockBuilder('LoggerClass')
-            ->setMethods(['warning'])
+        $this->logger = $this->getMockBuilder(TestLogger::class)
+            ->onlyMethods(['warning'])
             ->getMock();
 
         $this->logger
