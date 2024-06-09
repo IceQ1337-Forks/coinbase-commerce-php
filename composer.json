@@ -33,7 +33,7 @@
   "scripts": {
     "lint": "./vendor/bin/php-cs-fixer fix --verbose",
     "fix": "./vendor/bin/php-cs-fixer fix",
-    "test": "./vendor/bin/phpunit tests --verbose",
+    "test": "./vendor/bin/phpunit tests",
     "coverage": "./vendor/bin/phpunit tests --coverage-text"
   },
   "archive": {
