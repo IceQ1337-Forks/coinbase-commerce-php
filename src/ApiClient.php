@@ -311,9 +311,9 @@ class ApiClient
      * @param array $headers
      * @return ApiResponse
      */
-    public function post($path, $body, $headers)
+    public function post($path, $body, $headers = [])
     {
-        $options = $this->generateRequestOptions([], $body, $headers = []);
+        $options = $this->generateRequestOptions([], $body, $headers);
 
         return $this->makeRequest('POST', $path, $options);
     }
