@@ -44,7 +44,7 @@ class ApiResponse
         if ($response) {
             $this->code = $response->getStatusCode();
             $this->headers = $response->getHeaders();
-            $this->body = (string)$response->getBody();
+            $this->body = (string) $response->getBody();
             $lowerCaseKeys = \array_change_key_case($this->headers);
             $this->requestId = \array_key_exists(\strtolower(self::REQUEST_ID_HEADER), $lowerCaseKeys)
                 && !empty($lowerCaseKeys[\strtolower(self::REQUEST_ID_HEADER)][0])
