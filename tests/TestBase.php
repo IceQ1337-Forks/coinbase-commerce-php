@@ -8,9 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 abstract class TestBase extends TestCase
 {
-    /**
-     * @var ApiClient
-     */
     protected $apiClient;
 
     protected $httpClientWrapper;
