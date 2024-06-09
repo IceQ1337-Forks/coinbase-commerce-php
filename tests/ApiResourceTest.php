@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class ApiResourceTest extends TestCase
 {
+    protected $apiResourceStub;
+
     public function setUp(): void
     {
         parent::setUp();
