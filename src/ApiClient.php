@@ -217,7 +217,7 @@ class ApiClient
      */
     private function generateRequestOptions($query = [], $body = [], $headers = [])
     {
-        return $options = [
+        return [
             'headers' => \array_merge(
                 [
                     'Content-Type' => 'application/json',
