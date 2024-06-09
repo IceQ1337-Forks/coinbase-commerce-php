@@ -1,10 +1,10 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
+$finder = \PhpCsFixer\Finder::create()
     ->in(__DIR__)
     ->exclude('vendor');
 
-return (new PhpCsFixer\Config())
+return (new \PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR1' => true,
@@ -19,7 +19,6 @@ return (new PhpCsFixer\Config())
 
         'array_syntax' => ['syntax' => 'short'],
         'no_multiline_whitespace_around_double_arrow' => true,
-        'no_trailing_comma_in_singleline_array' => true,
         'no_whitespace_before_comma_in_array' => true,
         'normalize_index_brace' => true,
         'whitespace_after_comma_in_array' => true,
@@ -30,9 +29,9 @@ return (new PhpCsFixer\Config())
         'magic_constant_casing' => true,
         'magic_method_casing' => true,
         'native_function_casing' => true,
-        'native_function_type_declaration_casing' => true,
+        'native_type_declaration_casing' => true,
 
-        'cast_spaces' => ['space' => 'none'],
+        'cast_spaces' => ['space' => 'single'],
         'lowercase_cast' => true,
         'no_unset_cast' => true,
         'short_scalar_cast' => true,
@@ -50,13 +49,13 @@ return (new PhpCsFixer\Config())
         'native_constant_invocation' => ['strict' => false],
 
         'no_alternative_syntax' => true,
-        'no_trailing_comma_in_list_call' => true,
+        'no_trailing_comma_in_singleline' => true,
         'no_unneeded_control_parentheses' => ['statements' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield', 'yield_from']],
-        'no_unneeded_curly_braces' => ['namespaces' => true],
+        'no_unneeded_braces' => ['namespaces' => true],
         'switch_continue_to_break' => true,
         'trailing_comma_in_multiline' => ['elements' => ['arrays']],
 
-        'function_typehint_space' => true,
+        'type_declaration_spaces' => true,
         'lambda_not_used_import' => true,
         'native_function_invocation' => ['include' => ['@internal']],
         'no_unreachable_default_argument_value' => true,
@@ -80,7 +79,7 @@ return (new PhpCsFixer\Config())
 
         'clean_namespace' => true,
         'no_leading_namespace_whitespace' => true,
-        'single_blank_line_before_namespace' => true,
+        'blank_lines_before_namespace' => true,
 
         'no_homoglyph_names' => true,
 
@@ -105,7 +104,7 @@ return (new PhpCsFixer\Config())
         'no_singleline_whitespace_before_semicolons' => true,
         'space_after_semicolon' => ['remove_in_empty_for_expressions' => true],
 
-        'escape_implicit_backslashes' => true,
+        'string_implicit_backslashes' => true,
         'explicit_string_variable' => true,
         'heredoc_to_nowdoc' => true,
         'no_binary_string' => true,
@@ -113,7 +112,7 @@ return (new PhpCsFixer\Config())
 
         'array_indentation' => true,
         'blank_line_before_statement' => ['statements' => ['return', 'exit']],
-        'compact_nullable_typehint' => true,
+        'compact_nullable_type_declaration' => true,
         'method_chaining_indentation' => true,
         'no_extra_blank_lines' => ['tokens' => ['case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block', 'square_brace_block', 'switch', 'throw', 'use']],
         'no_spaces_around_offset' => true,
