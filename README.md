@@ -2,13 +2,16 @@
 Fork of the official PHP library for the [Coinbase Commerce API](https://commerce.coinbase.com/docs/).  
 **Note: The official repository is not actively maintained.**  
 
-If the official repository gets updated, this fork will be deleted or updated accordingly. You'll notice when updating packages using ``composer`` results in an error. In this case, the official repository has probably been updated and this fork has been removed.  
+**I strongly recommend to access the few endpoints that are left directly via a client of your choice and advise against using this library! Also, the old API could be discontinued at any time.**  
+
+If the official repository gets updated, this fork will be deleted or updated accordingly. You'll notice when updating packages using ``composer`` results in an error. In this case, the official repository has probably been updated and this fork has been removed. However, this will probably never happen 🙂  
+
+**The information in this documentation may no longer be correct! In addition, this library provides functions that no longer exist, but I couldn't be bothered to remove them yet.**  
 
 # Table of contents
 
 <!--ts-->
-   * [PHP Versions](#php-version)
-   * [Documentation](#documentation)
+   * [PHP Versions](#php-versions)
    * [Installation](#installation)
    * [Usage](#usage)
       * [Checkouts](#checkouts)
@@ -20,49 +23,7 @@ If the official repository gets updated, this fork will be deleted or updated ac
 <!--te-->
 
 ## PHP versions
-PHP version 7.4 and above are supported.
-
-## Documentation
-For more details visit [Coinbase API docs](https://commerce.coinbase.com/docs/api/).
-
-To start using this library register an account on [Coinbase Commerce](https://commerce.coinbase.com/signup).
-You will find your ``API_KEY`` from User Settings.
-
-Next initialize a ``Client`` for interacting with the API. The only required parameter to initialize a client is ``apiKey``, however, you can also pass in ``baseUrl``, ``apiVersion``  and ``timeout``.
-Parameters can be also be set post-initialization:
-``` php
-use CoinbaseCommerce\ApiClient;
-
-//Make sure you don't store your API Key in your source code!
-$apiClientObj = ApiClient::init(<API_KEY>);
-$apiClientObj->setTimeout(3);
-```
-
-### Disable SSL Check
-``` php
-$apiClientObj->verifySsl(false);
-```
-
-The API resource class provides the following static methods: ``list, all, create, retrieve, updateById, deleteById``.  Additionally, the API resource class also provides the following instance methods: ``save, delete, insert, update``.
-
-Each API method returns an ``ApiResource`` which represents the JSON response from the API.
-When the response data is parsed into objects, the appropriate ``ApiResource`` subclass will automatically be used.
-
-Client supports the handling of common API errors and warnings.
-All errors that occur during any interaction with the API will be raised as exceptions.
-
-
-| Error                        | Status Code |
-|------------------------------|-------------|
-| APIException                 |      *      |   
-| InvalidRequestException      |     400     |   
-| ParamRequiredException       |     400     |  
-| ValidationException          |     400     |  
-| AuthenticationException      |     401     |  
-| ResourceNotFoundException    |     404     |
-| RateLimitExceededException   |     429     |
-| InternalServerException      |     500     |
-| ServiceUnavailableException  |     503     |
+PHP version 8.1 and above are supported.
 
 ## Installation
 
@@ -101,15 +62,52 @@ composer update coinbase/coinbase-commerce
 ```
 
 ## Usage
+For more details visit the [Coinbase Commerce API documentation](https://docs.cdp.coinbase.com/commerce-onchain/docs/welcome/).
+
+To start using this library register an account on [Coinbase Commerce](https://commerce.coinbase.com/signup).  
+To find your `API_KEY`, navigate to the User Settings section.
+
+Next initialize a ``Client`` for interacting with the API. The only required parameter to initialize a client is ``apiKey``, however, you can also pass in ``baseUrl``, ``apiVersion``  and ``timeout``. You can also set your own `HTTP Client`, e.g. to use proxy settings.  
+
+Parameters can be also be set post-initialization:
 ``` php
 use CoinbaseCommerce\ApiClient;
 
-//Make sure you don't store your API Key in your source code!
-ApiClient::init('API_KEY');
+// Make sure you don't store your API Key in your source code!
+$apiClientObj = ApiClient::init(<API_KEY>);
+$apiClientObj->setHttpClient(HttpFactory::makeClient());
+$apiClientObj->setTimeout(3);
 ```
+
+### Disable SSL Check
+``` php
+$apiClientObj->verifySsl(false);
+```
+
+The API resource class provides the following static methods: ``list, all, create, retrieve, updateById, deleteById``.  Additionally, the API resource class also provides the following instance methods: ``save, delete, insert, update``.
+
+Each API method returns an ``ApiResource`` which represents the JSON response from the API.
+When the response data is parsed into objects, the appropriate ``ApiResource`` subclass will automatically be used.
+
+Client supports the handling of common API errors and warnings.
+All errors that occur during any interaction with the API will be raised as exceptions.
+
+
+| Error                        | Status Code |
+|------------------------------|-------------|
+| APIException                 |      *      |   
+| InvalidRequestException      |     400     |   
+| ParamRequiredException       |     400     |  
+| ValidationException          |     400     |  
+| AuthenticationException      |     401     |  
+| ResourceNotFoundException    |     404     |
+| RateLimitExceededException   |     429     |
+| InternalServerException      |     500     |
+| ServiceUnavailableException  |     503     |
+
 ## Checkouts 
-[Checkouts API docs](https://commerce.coinbase.com/docs/api/#checkouts)
-More examples on how to use checkouts can be found in the [`examples/Resources/CheckoutExample.php`](examples/Resources/CheckoutExample.php) file
+[Checkouts API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-new-checkout/)
+More examples on how to use checkouts can be found in the [`examples/Resources/CheckoutExample.php`](examples/Resources/CheckoutExample.php) file.
 
 ### Load checkout resource class
 ``` php
@@ -148,32 +146,7 @@ checkoutObj->requested_info = ['name', 'email'];
 
 checkoutObj->save();
 ```
-### Update
-``` php
-$checkoutObj = new Checkout();
 
-$checkoutObj->id = <checkout_id>;
-$checkoutObj->name = 'new name';
-
-$checkoutObj->save();
-// or
-$newParams = [
-    'name' => 'New name'
-];
-
-Checkout::updateById(<checkout_id>, $newParams});
-```
-### Delete
-``` php
-$checkoutObj = new Checkout();
-
-$checkoutObj->id = <checkout_id>;
-$checkoutObj->delete();
-
-// or
-
-Checkout::deleteById(<checkout_id>);
-```
 ### List
 List method returns ApiResourceList object.  
 
@@ -221,8 +194,8 @@ $allCheckouts = Checkout::getAll($params);
 
 ```
 ## Charges
-[Charges API docs](https://commerce.coinbase.com/docs/api/#charges)
-More examples on how to use charges can be found in the [`examples/Resources/ChargeExample.php`](examples/Resources/ChargeExample.php) file
+[Charges API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-charge/)
+More examples on how to use charges can be found in the [`examples/Resources/ChargeExample.php`](examples/Resources/ChargeExample.php) file.
 
 ### Load charge resource class
 ``` php
@@ -272,18 +245,9 @@ $pagination = $list->getPagination();
 $allCharges = Charge::getAll();
 ```
 
-### Resolve a charge
-Resolve a charge that has been previously marked as unresolved. 
-```
-$chargeObj = Charge::retrieve(<charge_id>);
-
-if ($chargeObj) {
-    $chargeObj->resolve();
-}
-```
-
 ### Cancel a charge
-Cancels a charge that has been previously created. 
+Cancels a charge that has been previously created.  
+
 Note: Only new charges can be successfully canceled. Once payment is detected, charge can no longer be canceled.
 
 ```
@@ -295,8 +259,8 @@ if ($chargeObj) {
 ```
 
 ## Events
-[Events API Docs](https://commerce.coinbase.com/docs/api/#events)
-More examples on how to use events can be found in the [`examples/Resources/EventExample.php`](examples/Resources/EventExample.php) file
+
+More examples on how to use events can be found in the [`examples/Resources/EventExample.php`](examples/Resources/EventExample.php) file.
 
 ### Load event resource class
 ``` php
@@ -326,14 +290,14 @@ It's prudent to be conscious of warnings. The library will log all warnings to a
 ``` php
 use CoinbaseCommerce\ApiClient;
 
-//Make sure you don't store your API Key in your source code!
+// Make sure you don't store your API Key in your source code!
 $apiClientObj = ApiClient::init(<API_KEY>);
 $apiClientObj->setLogger($logger);
 ```
 
 ## Webhooks
-Coinbase Commerce signs the webhook events it sends to your endpoint, allowing you to validate and verify that they weren't sent by someone else.
-You can find a simple example of how to use this with Express in the [`examples/Webhook`](examples/Webhook) folder
+Coinbase Commerce signs the webhook events it sends to your endpoint, allowing you to validate and verify that they weren't sent by someone else. You can find a simple example of how to use this in the [`examples/Webhook`](examples/Webhook) folder.
+
 ### Verify Signature header
 ``` php
 use CoinbaseCommerce\Webhook;
