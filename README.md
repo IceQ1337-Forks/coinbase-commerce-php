@@ -1,5 +1,5 @@
 # Coinbase Commerce
-Fork of the official PHP library for the [Coinbase Commerce API](https://commerce.coinbase.com/docs/).  
+Fork of the official PHP library for the [Coinbase Commerce API](https://docs.cdp.coinbase.com/commerce-onchain/docs/welcome/).  
 **Note: The official repository is not actively maintained.**  
 
 **I strongly recommend to access the few endpoints that are left directly via a client of your choice and advise against using this library! Also, the old API could be discontinued at any time.**  
@@ -106,7 +106,8 @@ All errors that occur during any interaction with the API will be raised as exce
 | ServiceUnavailableException  |     503     |
 
 ## Checkouts 
-[Checkouts API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-new-checkout/)
+[Checkouts API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-new-checkout/)  
+
 More examples on how to use checkouts can be found in the [`examples/Resources/CheckoutExample.php`](examples/Resources/CheckoutExample.php) file.
 
 ### Load checkout resource class
@@ -194,7 +195,8 @@ $allCheckouts = Checkout::getAll($params);
 
 ```
 ## Charges
-[Charges API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-charge/)
+[Charges API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/creates-a-charge/)  
+
 More examples on how to use charges can be found in the [`examples/Resources/ChargeExample.php`](examples/Resources/ChargeExample.php) file.
 
 ### Load charge resource class
@@ -259,6 +261,7 @@ if ($chargeObj) {
 ```
 
 ## Events
+[Events API docs](https://docs.cdp.coinbase.com/commerce-onchain/reference/getevents/)  
 
 More examples on how to use events can be found in the [`examples/Resources/EventExample.php`](examples/Resources/EventExample.php) file.
 
